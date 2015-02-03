@@ -2,7 +2,7 @@
 S'saved_by_info'
 p2
 (dp3
-S'1422117118'
+S'1422998262'
 p4
 Vmacieksk
 p5
@@ -18,7 +18,7 @@ p10
 I1
 assS'id_number'
 p12
-I77
+I79
 sS'pretty_print'
 p13
 I00
@@ -40,24 +40,24 @@ p21
 (lp22
 sS'name'
 p23
-VNew_Project
+Vseed-hit-cov-data-generator
 p24
 sS'last_change_pretty'
 p25
-V1 minute
+V35 seconds
 p26
 sS'system'
 p27
 Vr
 sS'filename'
 p28
-Vmacieksk/77
+Vmacieksk/79
 p29
 sS'last_change'
 p30
 (Vmacieksk
 p31
-F1422117156.052367
+F1422998327.294754
 tp32
 sS'worksheet_that_was_published'
 p33

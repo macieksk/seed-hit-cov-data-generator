@@ -1,7 +1,7 @@
 #!/bin/bash
 HOMEDIR=$( getent passwd "$USER" | cut -d: -f6 )
 SAGEUSR="$HOMEDIR/sage-git/imid.sagenb/home/macieksk/"
-WRKNUM=75
+WRKNUM=79
 WRKDIR=R_worksheets/sageworksheet 
 
 confirm () {
