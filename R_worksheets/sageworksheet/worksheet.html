@@ -1,0 +1,272 @@
+
+
+{{{id=1|
+%r
+#Setup text output width 
+.adjustWidth <- function(...){ options(width=10000) ; #Sys.getenv("COLUMNS"));
+TRUE}
+.adjustWidthCallBack <- addTaskCallback(.adjustWidth)
+R.version.string
+print("email: 'Maciek Sykulski'<macieksk@gmail.com>")
+length(ls())
+///
+[1] "R version 3.1.1 (2014-07-10)"
+[1] "email: 'Maciek Sykulski'<macieksk@gmail.com>"
+[1] 0
+}}}
+
+{{{id=18|
+%sage
+import sage.misc.latex
+sage.misc.latex=reload(sage.misc.latex)
+from sage.misc.latex import Latex
+
+latex=Latex(debug=False, slide=False, density=100, pdflatex=None, engine="latex")
+///
+}}}
+
+{{{id=9|
+%r
+projDir<-"~/paris-umlv/seedstats"
+projectPrefix<-"R_umlv_seedstats"
+
+#
+load.sources<-function(){
+    for (f in  c("utils.R" #Contains inpar, save_new_image, etc
+                 #...  
+                 ) 
+        ){
+    source(paste(projDir,"/src/",f,sep=""))
+   }
+}
+load.sources()
+///
+}}}
+
+{{{id=8|
+#Switch evaluation system to R
+///
+}}}
+
+{{{id=6|
+#system.time(load(paste(projDir,"/r_saved_images/",projectPrefix,".Rdata",sep="")))
+lsos()
+gc()
+///
+                   Type  Size Rows Columns
+cpar           function 23536   NA      NA
+save_new_image function 11168   NA      NA
+inpar          function  9856   NA      NA
+kill.all.jobs  function  8688   NA      NA
+load.sources   function  8448   NA      NA
+lsos           function  5184   NA      NA
+get.global.vec function  2672   NA      NA
+plotNameOut    function  2016   NA      NA
+plotName       function  1752   NA      NA
+niceDate       function  1344   NA      NA
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 198610 10.7     407500 21.8   350000 18.7
+Vcells 409451  3.2     905753  7.0   865259  6.7
+}}}
+
+{{{id=5|
+%time
+gc()
+#system.time(save_new_image())
+///
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 198578 10.7     407500 21.8   350000 18.7
+Vcells 409338  3.2     905753  7.0   865259  6.7
+
+CPU time: 0.00 s,  Wall time: 0.03 s
+}}}
+
+{{{id=10|
+library(xlsx)
+///
+Loading required package: rJava
+Loading required package: xlsxjars
+}}}
+
+{{{id=4|
+library(lattice)
+library(latticeExtra)
+library(ggplot2)
+library(gplots)
+library(png)
+
+library(Hmisc)
+library(cluster)
+library(MASS)
+library(reshape)
+
+#library(lumi)
+#library(lumiHumanIDMapping)
+#library(lumiHumanAll.db)
+#library(limma)
+
+#library(annotate)
+#library(GOstats)
+
+library(multtest)
+library(matrixStats)
+#library(extrafont)
+#library(enrichvs)
+#library(statmod)
+
+
+load.sources()
+
+sessionInfo()
+///
+Loading required package: RColorBrewer
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:latticeExtra’:
+
+    layer
+
+
+Attaching package: ‘gplots’
+
+The following object is masked from ‘package:stats’:
+
+    lowess
+
+
+Loading required package: grid
+Loading required package: survival
+Loading required package: splines
+Loading required package: Formula
+
+Attaching package: ‘Hmisc’
+
+The following objects are masked from ‘package:base’:
+
+    format.pval, round.POSIXt, trunc.POSIXt, units
+
+
+
+
+
+
+
+
+
+
+Loading required package: Biobase
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following object is masked from ‘package:Hmisc’:
+
+    combine
+
+The following objects are masked from ‘package:rJava’:
+
+    anyDuplicated, duplicated, sort, unique
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ, clusterExport, clusterMap, parApply, parCapply, parLapply, parLapplyLB, parRapply, parSapply, parSapplyLB
+
+The following object is masked from ‘package:stats’:
+
+    xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, as.vector, cbind, colnames, do.call, duplicated, eval, evalq, Filter, Find, get, intersect, is.unsorted, lapply, Map, mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce, rep.int, rownames, sapply, setdiff, sort, table, tapply, union, unique, unlist
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with 'browseVignettes()'. To cite Bioconductor, see 'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:Hmisc’:
+
+    contents
+
+
+Attaching package: ‘multtest’
+
+The following object is masked from ‘package:gplots’:
+
+    wapply
+
+matrixStats v0.10.3 (2014-10-01) successfully loaded. See ?matrixStats for help.
+
+Attaching package: ‘matrixStats’
+
+The following objects are masked from ‘package:Biobase’:
+
+    anyMissing, rowMedians
+
+
+
+
+
+R version 3.1.1 (2014-07-10)
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8          LC_NUMERIC=C                  LC_TIME=en_US.UTF-8           LC_COLLATE=en_US.UTF-8        LC_MONETARY=en_US.UTF-8       LC_MESSAGES=en_US.UTF-8       LC_PAPER=en_US.UTF-8          LC_NAME=en_US.UTF-8           LC_ADDRESS=en_US.UTF-8        LC_TELEPHONE=en_US.UTF-8      LC_MEASUREMENT=en_US.UTF-8    LC_IDENTIFICATION=en_US.UTF-8
+
+attached base packages:
+ [1] splines   grid      parallel  stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] matrixStats_0.10.3  multtest_2.20.0     Biobase_2.24.0      BiocGenerics_0.10.0 reshape_0.8.5       MASS_7.3-35         cluster_1.15.3      Hmisc_3.14-5        Formula_1.1-2       survival_2.37-7     png_0.1-7           gplots_2.14.2       ggplot2_1.0.0       latticeExtra_0.6-26 RColorBrewer_1.0-5  lattice_0.20-29     xlsx_0.5.7          xlsxjars_0.6.1      rJava_0.9-6        
+
+loaded via a namespace (and not attached):
+ [1] acepack_1.3-3.3    bitops_1.0-6       caTools_1.17.1     colorspace_1.2-4   digest_0.6.4       foreign_0.8-61     gdata_2.13.3       gtable_0.1.2       gtools_3.4.1       KernSmooth_2.23-13 munsell_0.4.2      nnet_7.3-8         plyr_1.8.1         proto_0.3-10       R.methodsS3_1.6.1  Rcpp_0.11.3        reshape2_1.4       rpart_4.1-8        scales_0.2.4       stats4_3.1.1       stringr_0.6.2     
+}}}
+
+{{{id=3|
+####### The project
+///
+}}}
+
+{{{id=17|
+
+///
+}}}
+
+{{{id=16|
+
+///
+}}}
+
+{{{id=15|
+
+///
+}}}
+
+{{{id=14|
+
+///
+}}}
+
+{{{id=13|
+
+///
+}}}
+
+{{{id=12|
+
+///
+}}}
+
+{{{id=11|
+
+///
+}}}
+
+{{{id=2|
+
+///
+}}}
