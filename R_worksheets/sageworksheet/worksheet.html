@@ -542,6 +542,9 @@ null device
 {{{id=32|
 png(w=2000,h=2000,res=250)
 
+#pname<-paste(projDir,"/plots/","smooth.scatter..spaced.vs.contig.pdf",sep="")
+#pdf.call(pname,height=2000,width=2000,pointtopixel=3000)
+         
 par(mfcol=c(2,2))
 colramp = colorRampPalette(c("white", blues9))
 
@@ -601,10 +604,9 @@ p1<-with(subset(test.seed.df,seed==levels(seed)[2]&Ham<=50),{
  })
 
 
-#print(p1,split=c(1,1,2,1),more=TRUE)
-#print(p2,split=c(2,1,2,1),more=FALSE)
-
 dev.off()
+
+#system(paste("cp",pname,"./",sep=" "))    
 ///
 null device 
           1 
@@ -623,7 +625,7 @@ Warning messages:
 %time
 res.all<-do.call(rbind,lapply(c("cov.seed","mhit.seed"),function(seed.type)
      cbind(with(if (seed.type=="cov.seed") cov.seed.df else mhit.seed.df,  
-     do.call(rbind,mclapply(seq(1,51,by=2),function(max.dist)
+     do.call(rbind,mclapply(seq(2,50,by=2),function(max.dist)
      do.call(rbind,lapply(levels(seed),function(s){
        ids<-seed==s&(Ham<=max.dist)#&(Ham>=max.dist-5)
        discretize<-function(x)x 
@@ -640,13 +642,13 @@ res.all<-do.call(rbind,lapply(c("cov.seed","mhit.seed"),function(seed.type)
 head(res.all)         
 ///
   min.iden cond.entropy  rank.cor type                      seed seed.weight spaced.seed seed.type
-1     0.99            0 0.9492780 Hits          ################          16  contiguous  cov.seed
-2     0.99            0 0.9493668  Cov          ################          16  contiguous  cov.seed
-3     0.99            0 0.9335749 Hits ###-###--#-#--#-##--#####          16      spaced  cov.seed
-4     0.99            0 0.9456913  Cov ###-###--#-#--#-##--#####          16      spaced  cov.seed
-5     0.99            0 0.9454152 Hits        ##################          18  contiguous  cov.seed
-6     0.99            0 0.9457609  Cov        ##################          18  contiguous  cov.seed
-CPU time: 0.00 s,  Wall time: 29.84 s
+1     0.98   0.04898844 0.9420309 Hits          ################          16  contiguous  cov.seed
+2     0.98   0.18116166 0.8872194  Cov          ################          16  contiguous  cov.seed
+3     0.98   0.11853842 0.9177187 Hits ###-###--#-#--#-##--#####          16      spaced  cov.seed
+4     0.98   0.21470464 0.8968428  Cov ###-###--#-#--#-##--#####          16      spaced  cov.seed
+5     0.98   0.07355779 0.9315159 Hits        ##################          18  contiguous  cov.seed
+6     0.98   0.20530192 0.8796751  Cov        ##################          18  contiguous  cov.seed
+CPU time: 0.00 s,  Wall time: 27.62 s
 }}}
 
 {{{id=54|
